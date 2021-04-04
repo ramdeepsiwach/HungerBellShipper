@@ -125,7 +125,7 @@ public class ShippingActivity extends FragmentActivity implements OnMapReadyCall
     private List<LatLng> polylineList;
 
     private IGoogleAPI iGoogleAPI;
-    private CompositeDisposable compositeDisposable = new CompositeDisposable();
+    private final CompositeDisposable compositeDisposable = new CompositeDisposable();
 
     private IFMCMService ifmcmService;
 

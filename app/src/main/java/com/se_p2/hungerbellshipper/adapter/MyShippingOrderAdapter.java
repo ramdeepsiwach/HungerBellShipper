@@ -83,7 +83,7 @@ public class MyShippingOrderAdapter extends RecyclerView.Adapter<MyShippingOrder
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        private Unbinder unbinder;
+        private final Unbinder unbinder;
 
         @BindView(R.id.txt_date)
         TextView txt_date;

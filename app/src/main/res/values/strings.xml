@@ -25,4 +25,5 @@
     <string name="name_String">Name</string>
     <string name="phoneString">Phone</string>
     <string name="showString">Show</string>
+    <string name="log_out">Log Out</string>
 </resources>

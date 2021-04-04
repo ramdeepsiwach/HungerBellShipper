@@ -20,10 +20,10 @@ import androidx.lifecycle.ViewModel;
 
 public class HomeViewModel extends ViewModel implements IShippingOrderCallbackListener {
 
-    private MutableLiveData<List<ShippingOrderModel>> shippingOrderMutableData;
-    private MutableLiveData<String> messageError;
+    private final MutableLiveData<List<ShippingOrderModel>> shippingOrderMutableData;
+    private final MutableLiveData<String> messageError;
 
-    private IShippingOrderCallbackListener listener;
+    private final IShippingOrderCallbackListener listener;
 
     public HomeViewModel() {
         shippingOrderMutableData=new MutableLiveData<>();

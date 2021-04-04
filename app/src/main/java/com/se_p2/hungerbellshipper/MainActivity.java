@@ -32,7 +32,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
-    private static int APP_REQUEST_CODE = 7171;
+    private static final int APP_REQUEST_CODE = 7171;
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener listener;
     private AlertDialog dialog;

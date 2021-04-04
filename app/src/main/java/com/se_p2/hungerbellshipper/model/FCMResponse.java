@@ -3,7 +3,7 @@ package com.se_p2.hungerbellshipper.model;
 import java.util.List;
 
 public class FCMResponse {
-    private long multicast_id;
+    private long multiCastId;
     private int success,failure,canonical_ids;
     private List<FCMResult> results;
     private long message_id;
@@ -11,12 +11,12 @@ public class FCMResponse {
     public FCMResponse() {
     }
 
-    public long getMulticast_id() {
-        return multicast_id;
+    public long getMultiCastId() {
+        return multiCastId;
     }
 
-    public void setMulticast_id(long multicast_id) {
-        this.multicast_id = multicast_id;
+    public void setMultiCastId(long multiCastId) {
+        this.multiCastId = multiCastId;
     }
 
     public int getSuccess() {

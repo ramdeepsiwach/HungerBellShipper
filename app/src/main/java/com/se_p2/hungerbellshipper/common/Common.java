@@ -8,14 +8,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.location.Location;
 import android.os.Build;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
-import android.text.style.StyleSpan;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,7 +30,6 @@ import androidx.core.app.NotificationCompat;
 
 public class Common {
     public static final String SHIPPER_REF = "Shipper";
-    public static final String CATEGORY_REF = "Category";
     public static final String ORDER_REF = "Order";
     public static final String NOTI_TITLE = "title";
     public static final String NOTI_CONTENT = "content";
@@ -47,14 +44,13 @@ public class Common {
         SpannableStringBuilder builder = new SpannableStringBuilder();
         builder.append(s);
         SpannableString spannableString = new SpannableString(format);
-        StyleSpan boldSpan = new StyleSpan(Typeface.BOLD);
         spannableString.setSpan(new ForegroundColorSpan(Color), 0, format.length(),
                 Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         builder.append(spannableString);
         txt_time.setText(builder, TextView.BufferType.SPANNABLE);
     }
 
-    public static String convertStatusToString(int orderStatus) {
+    /*public static String convertStatusToString(int orderStatus) {
         switch (orderStatus) {
             case 0:
                 return "Placed";
@@ -71,7 +67,7 @@ public class Common {
 
     public static String createTopicOrder() {
         return "/topics/new_order";
-    }
+    }*/
 
     public static void updateToken(Context context, String newToken, boolean isServer, boolean isShipper) {
         if (Common.currentShipperUser != null) {
@@ -79,9 +75,7 @@ public class Common {
                     .getReference(Common.TOKEN_REF)
                     .child(Common.currentShipperUser.getUid())
                     .setValue(new TokenModel(Common.currentShipperUser.getPhone(), newToken, isServer, isShipper))
-                    .addOnFailureListener(e -> {
-                        Toast.makeText(context, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
-                    });
+                    .addOnFailureListener(e -> Toast.makeText(context, "" + e.getMessage(), Toast.LENGTH_SHORT).show());
         }
     }
 
@@ -133,7 +127,7 @@ public class Common {
     }
 
     public static List<LatLng> decodePoly(String encoded) {
-        List poly = new ArrayList();
+        ArrayList poly = new ArrayList();
         int index = 0, len = encoded.length();
 
         int lat = 0, lng = 0;
@@ -144,8 +138,8 @@ public class Common {
                 result |= (b & 0x1f) << shift;
                 shift += 5;
             } while (b >= 0x20);
-            int dlat = ((result & 1) != 0 ? ~(result >> 1) : (result >> 1));
-            lat += dlat;
+            int dLat = ((result & 1) != 0 ? ~(result >> 1) : (result >> 1));
+            lat += dLat;
 
             shift = 0;
             result = 0;
@@ -155,8 +149,8 @@ public class Common {
                 result |= (b & 0x1f) << shift;
                 shift += 5;
             } while (b >= 0x20);
-            int dlng = ((result & 1) != 0 ? ~(result >> 1) : (result >> 1));
-            lng += dlng;
+            int dLng = ((result & 1) != 0 ? ~(result >> 1) : (result >> 1));
+            lng += dLng;
 
             LatLng p = new LatLng((((double) lat / 1E5)), (((double) lng / 1E5)));
             poly.add(p);
@@ -165,7 +159,7 @@ public class Common {
     }
 
     public static String buildLocationString(Location location) {
-        return new StringBuilder().append(location.getLatitude()).append(",")
-                .append(location.getLongitude()).toString();
+        return location.getLatitude() + "," +
+                location.getLongitude();
     }
 }
